@@ -9,14 +9,7 @@ function TaskCard({task}) {
   
   const navigate = useNavigate();
 
-  const {
-    setNodeRef,
-    attributes,
-    listeners,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
+  const {setNodeRef,attributes,listeners,transform,transition,isDragging,} = useSortable({
     id: task.id,
     data: {
       type: "Task",
@@ -52,10 +45,10 @@ function TaskCard({task}) {
   
 
   return (
-    <div onClick={handleClick} ref={setNodeRef} style={style} {...attributes} {...listeners}  className="bg-mainBackgroundColor p-2.5 h-[100px] min-h-[100px] items-center flex text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 active:cursor-grabbing cursor-grab relative task overflow-x-hidden overflow-y-auto">
+    <div onClick={handleClick} ref={setNodeRef} style={style} {...attributes} {...listeners}  className="bg-black p-3 h-[100px] min-h-[100px]  flex items-center text-left rounded-xl hover:ring-2 hover:ring-inset hover:ring-rose-500 active:cursor-grabbing cursor-grab relative task overflow-x-hidden overflow-y-auto">
       
-      <p className="my-auto h-[90%] w-full overflow-y-auto overflow-x-hidden whitespace-pre-wrap">
-        {task.content}
+      <p className="my-auto h-[90%] w-full overflow-y-hidden overflow-x-hidden whitespace-pre-wrap flex items-center justify-center">
+        {task.title}
       </p>
  
     </div>
