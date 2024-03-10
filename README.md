@@ -15,7 +15,7 @@ To get started with the frontend application, follow the steps below:
 First, clone this repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/your-username/frontend-application.git
+git clone https://github.com/alluri-reddy/Todo-airtribe.git
 ```
 
 ### Installing Dependencies 📦
