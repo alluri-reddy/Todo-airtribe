@@ -1,10 +1,10 @@
-Sure, here's an updated version of the integrated README file with more symbols and emojis:
-
----
-
 # Drag & Drop Todo Application 📝✨
 
 Welcome to the frontend application repository! This repository contains the code for the frontend of our application. 🚀
+
+https://alluri-todo.netlify.app
+
+**Live Application Link netlify link --> : ** [Drag & Drop Todo Application](https://alluri-todo.netlify.app/)
 
 ## Getting Started 🛠️
 
