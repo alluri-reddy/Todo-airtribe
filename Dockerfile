@@ -1,5 +1,5 @@
 
-FROM node:14 as build
+FROM node:16 as build
 
 
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 
-RUN npm install
+RUN npm ci
 
 
 COPY . .
