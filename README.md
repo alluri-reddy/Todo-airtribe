@@ -18,7 +18,7 @@ First, clone this repository to your local machine using the following command:
 git clone https://github.com/alluri-reddy/Todo-airtribe.git
 ```
 
-### Installing Dependencies 📦
+### Installing Dependencies  📦
 
 Navigate into the cloned repository directory:
 
