@@ -26,7 +26,7 @@ jobs:
 
     # Step 4: Run tests
     - name: Run tests
-      run: npm test -- --passWithNoTests  # You can replace this with actual tests when available
+      run: npm test -- --passWithNoTests  # Replace this with actual tests if available
 
     # Step 5: Authenticate with Google Cloud
     - name: Authenticate with GCP
@@ -51,7 +51,7 @@ jobs:
         docker build --platform linux/amd64 -t $IMAGE .
         docker push $IMAGE
 
-    # Step 9: Deploy to Google Cloud Run
+    # Step 9: Deploy to Google Cloud Run with PORT=80
     - name: Deploy to Cloud Run
       run: |
         IMAGE=gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA
@@ -59,4 +59,5 @@ jobs:
           --image $IMAGE \
           --platform managed \
           --region us-central1 \
-          --allow-unauthenticated
+          --allow-unauthenticated \
+          --set-env-vars PORT=80
