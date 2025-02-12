@@ -14,13 +14,10 @@ RUN npm run build
 
 FROM nginx:alpine
 
-
 COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf  # Copy your custom config
 
+EXPOSE 8080
 
-EXPOSE 80
-
-# Start Nginx server and keep it running in the foreground
 CMD ["nginx", "-g", "daemon off;"]
-
 
