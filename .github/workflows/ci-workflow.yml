@@ -10,34 +10,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout the code
     - name: Checkout code
       uses: actions/checkout@v3
 
+    # Step 2: Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 16
 
+    # Step 3: Install dependencies using npm ci for faster and reliable builds
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
+    # Step 4: Run tests
     - name: Run tests
-      run: npm test -- --passWithNoTests  # Avoid "No tests found" error when no tests exist
+      run: npm test -- --passWithNoTests  # You can replace this with actual tests when available
 
+    # Step 5: Authenticate with Google Cloud
     - name: Authenticate with GCP
       uses: google-github-actions/auth@v1
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+    # Step 6: Set Google Cloud project and region
+    - name: Set Google Cloud project and region
+      run: |
+        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+        gcloud config set run/region us-central1
+
+    # Step 7: Configure Docker for Google Container Registry (GCR)
     - name: Configure Docker for GCR
       run: gcloud auth configure-docker
 
+    # Step 8: Build and push Docker image to GCR
     - name: Build and Push Docker image
       run: |
         IMAGE=gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA
-        docker build -t $IMAGE .
+        docker build --platform linux/amd64 -t $IMAGE .
         docker push $IMAGE
 
+    # Step 9: Deploy to Google Cloud Run
     - name: Deploy to Cloud Run
       run: |
         IMAGE=gcr.io/${{ secrets.GCP_PROJECT_ID }}/my-app:$GITHUB_SHA
